@@ -37,34 +37,35 @@ import React , {useState} from 'react'; /* ADIM 0 */
 
 export default function Input() {
 
-  const [inputDeğeri,setInputDeğeri]  = useState('Mesud Electronic Engineer');
-  const sentence = 'naber dostum ...';
-
+  const [inputDeğeri,setInputDeğeri]  = useState("");
 	
   const inputuDegistir = evt => {
     // When the input changes, its whole value can be found inside the event object.
     // Log out the synthetic event object 'evt' and see for yourself.
     const { value } = evt.target;
-    
+    setInputDeğeri(value);
 	
   };
   const reset = () => {
-    /* ADIM 5 */
+
+    setInputDeğeri('');
+
   };
 
   const stil = 
   {
     fontSize: '1.5em',
     marginBottom: '0.3em',
+    color: inputDeğeri.length > 10 ? 'crimson' : 'royalblue',
     
   };
 
   return (
     <div className='widget-input container'>
       <h2>Input</h2>
-      <div id='output' style={stil}>{sentence}</div> {}
+      <div id='output' style={stil}>{inputDeğeri.toUpperCase()}</div> {''}
       <div>
-		    <input id='input' type='text' onChange={inputuDegistir} /> {/* ADIM 6 */}
+		    <input id='input' type='text' value={inputDeğeri} onChange={inputuDegistir} /> {/* ADIM 6 */}
         <button id='resetInput' onClick={reset}>Reset</button>
       </div>
     </div>
